@@ -1,10 +1,11 @@
 package de.weinschenk.suflux.blockentity;
 
+import de.weinschenk.suflux.compat.MekanismEnergyCompat;
 import de.weinschenk.suflux.init.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
-import java.util.EnumSet;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -12,16 +13,21 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.fml.ModList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.EnumSet;
+
 public class InfiniteFluxCableBlockEntity extends BlockEntity {
 
-    // Integer.MAX_VALUE als Puffer – praktisch unbegrenzt
     private static final int INFINITE = Integer.MAX_VALUE;
 
     private final EnergyStorage buffer = new EnergyStorage(INFINITE, INFINITE, INFINITE);
     private final LazyOptional<IEnergyStorage> energyHandler = LazyOptional.of(() -> buffer);
+
+    // Mekanism-Puffer (package-visible für MekanismEnergyCompat nicht ausreichend – public nötig)
+    public double mekanismBuffer = 0.0;
 
     private int transferredThisTick = 0;
     private int transferredLastTick = 0;
@@ -37,6 +43,9 @@ public class InfiniteFluxCableBlockEntity extends BlockEntity {
         be.transferredLastTick = be.transferredThisTick;
         be.transferredThisTick = 0;
         be.transferEnergy(level, pos);
+        if (ModList.get().isLoaded("mekanism")) {
+            MekanismEnergyCompat.tick(level, pos, be);
+        }
     }
 
     private void transferEnergy(Level level, BlockPos pos) {
@@ -80,6 +89,10 @@ public class InfiniteFluxCableBlockEntity extends BlockEntity {
         if (cap == ForgeCapabilities.ENERGY) {
             return energyHandler.cast();
         }
+        if (ModList.get().isLoaded("mekanism")) {
+            LazyOptional<T> mek = MekanismEnergyCompat.getCapability(this, cap, side);
+            if (mek.isPresent()) return mek;
+        }
         return super.getCapability(cap, side);
     }
 
@@ -87,5 +100,20 @@ public class InfiniteFluxCableBlockEntity extends BlockEntity {
     public void invalidateCaps() {
         super.invalidateCaps();
         energyHandler.invalidate();
+        if (ModList.get().isLoaded("mekanism")) {
+            MekanismEnergyCompat.invalidate(this);
+        }
+    }
+
+    @Override
+    public void saveAdditional(CompoundTag tag) {
+        super.saveAdditional(tag);
+        tag.putDouble("mekanismBuffer", mekanismBuffer);
+    }
+
+    @Override
+    public void load(CompoundTag tag) {
+        super.load(tag);
+        mekanismBuffer = tag.getDouble("mekanismBuffer");
     }
 }
