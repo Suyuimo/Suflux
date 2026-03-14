@@ -4,6 +4,7 @@ import de.weinschenk.suflux.init.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
+import java.util.EnumSet;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -35,12 +36,13 @@ public class InfiniteFluxCableBlockEntity extends BlockEntity {
         if (level.isClientSide) return;
         be.transferredLastTick = be.transferredThisTick;
         be.transferredThisTick = 0;
-        be.pullEnergy(level, pos);
-        be.pushEnergy(level, pos);
+        be.transferEnergy(level, pos);
     }
 
-    /** Energie von benachbarten Blöcken ziehen */
-    private void pullEnergy(Level level, BlockPos pos) {
+    private void transferEnergy(Level level, BlockPos pos) {
+        EnumSet<Direction> pulledFrom = EnumSet.noneOf(Direction.class);
+
+        // Pull: Energie von Quellen ziehen
         for (Direction dir : Direction.values()) {
             BlockEntity neighbor = level.getBlockEntity(pos.relative(dir));
             if (neighbor == null) continue;
@@ -52,15 +54,14 @@ public class InfiniteFluxCableBlockEntity extends BlockEntity {
                 int accepted = buffer.receiveEnergy(available, false);
                 source.extractEnergy(accepted, false);
                 transferredThisTick += accepted;
+                pulledFrom.add(dir);
             });
         }
-    }
 
-    /** Energie an benachbarte Blöcke weitergeben */
-    private void pushEnergy(Level level, BlockPos pos) {
+        // Push: Energie an Verbraucher weitergeben – NICHT zurück zur Quelle
         if (buffer.getEnergyStored() == 0) return;
-
         for (Direction dir : Direction.values()) {
+            if (pulledFrom.contains(dir)) continue;
             BlockEntity neighbor = level.getBlockEntity(pos.relative(dir));
             if (neighbor == null) continue;
 
