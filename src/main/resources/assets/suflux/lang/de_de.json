@@ -1,0 +1,24 @@
+{
+  "block.suflux.infinite_flux_cable":          "Unendliches Flux-Kabel",
+  "block.suflux.test_generator":               "Test-Generator",
+  "block.suflux.test_consumer":                "Test-Verbraucher",
+  "block.suflux.flux_crystal_ore":             "Flux-Kristall-Erz",
+  "block.suflux.deepslate_flux_crystal_ore":   "Tiefschieferflusskristallerz",
+  "block.suflux.flux_infuser":                 "Flux-Infuser",
+
+  "item.suflux.infinite_flux_cable":           "Unendliches Flux-Kabel",
+  "item.suflux.test_generator":                "Test-Generator",
+  "item.suflux.test_consumer":                 "Test-Verbraucher",
+  "item.suflux.flux_meter":                    "Flux-Messgerät",
+  "item.suflux.flux_crystal_ore":              "Flux-Kristall-Erz",
+  "item.suflux.deepslate_flux_crystal_ore":    "Tiefschieferflusskristallerz",
+  "item.suflux.raw_flux_crystal":              "Roher Flux-Kristall",
+  "item.suflux.flux_crystal":                  "Flux-Kristall",
+  "item.suflux.flux_conductor":                "Flux-Leiter",
+  "item.suflux.flux_insulation":               "Flux-Isolierung",
+  "item.suflux.flux_core":                     "Flux-Kern",
+  "item.suflux.energized_flux_core":           "Energetisierter Flux-Kern",
+  "item.suflux.flux_infuser":                  "Flux-Infuser",
+
+  "itemGroup.suflux.example_tab":              "Suflux"
+}

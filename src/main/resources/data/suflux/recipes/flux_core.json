@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ICI",
+    "CGC",
+    "ICI"
+  ],
+  "key": {
+    "I": { "item": "suflux:flux_insulation" },
+    "C": { "item": "suflux:flux_conductor" },
+    "G": { "tag": "forge:ingots/gold" }
+  },
+  "result": { "item": "suflux:flux_core", "count": 1 }
+}

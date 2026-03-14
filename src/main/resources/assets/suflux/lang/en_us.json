@@ -1,0 +1,24 @@
+{
+  "block.suflux.infinite_flux_cable":          "Infinite Flux Cable",
+  "block.suflux.test_generator":               "Test Generator",
+  "block.suflux.test_consumer":                "Test Consumer",
+  "block.suflux.flux_crystal_ore":             "Flux Crystal Ore",
+  "block.suflux.deepslate_flux_crystal_ore":   "Deepslate Flux Crystal Ore",
+  "block.suflux.flux_infuser":                 "Flux Infuser",
+
+  "item.suflux.infinite_flux_cable":           "Infinite Flux Cable",
+  "item.suflux.test_generator":                "Test Generator",
+  "item.suflux.test_consumer":                 "Test Consumer",
+  "item.suflux.flux_meter":                    "Flux Meter",
+  "item.suflux.flux_crystal_ore":              "Flux Crystal Ore",
+  "item.suflux.deepslate_flux_crystal_ore":    "Deepslate Flux Crystal Ore",
+  "item.suflux.raw_flux_crystal":              "Raw Flux Crystal",
+  "item.suflux.flux_crystal":                  "Flux Crystal",
+  "item.suflux.flux_conductor":                "Flux Conductor",
+  "item.suflux.flux_insulation":               "Flux Insulation",
+  "item.suflux.flux_core":                     "Flux Core",
+  "item.suflux.energized_flux_core":           "Energized Flux Core",
+  "item.suflux.flux_infuser":                  "Flux Infuser",
+
+  "itemGroup.suflux.example_tab":              "Suflux"
+}

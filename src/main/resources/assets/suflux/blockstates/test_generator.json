@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "suflux:block/test_generator"
+    }
+  }
+}

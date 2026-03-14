@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "BBB",
+    "SSS"
+  ],
+  "key": {
+    "S": { "item": "minecraft:string" },
+    "B": { "item": "minecraft:slime_ball" }
+  },
+  "result": { "item": "suflux:flux_insulation", "count": 4 }
+}

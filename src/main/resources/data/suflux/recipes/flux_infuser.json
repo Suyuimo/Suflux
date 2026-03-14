@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IFI",
+    "FRF",
+    "IFI"
+  ],
+  "key": {
+    "I": { "tag": "forge:ingots/iron" },
+    "F": { "item": "suflux:flux_crystal" },
+    "R": { "item": "minecraft:redstone_block" }
+  },
+  "result": { "item": "suflux:flux_infuser", "count": 1 }
+}

@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": { "item": "suflux:raw_flux_crystal" },
+  "result": "suflux:flux_crystal",
+  "experience": 0.7,
+  "cookingtime": 200
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ECE",
+    "CFC",
+    "ECE"
+  ],
+  "key": {
+    "E": { "tag": "forge:ingots/enderium" },
+    "C": { "tag": "forge:dusts/cryotheum" },
+    "F": { "item": "suflux:energized_flux_core" }
+  },
+  "result": { "item": "suflux:infinite_flux_cable", "count": 4 }
+}

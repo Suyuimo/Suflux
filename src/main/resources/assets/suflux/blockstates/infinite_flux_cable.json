@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "suflux:block/infinite_flux_cable"
+    }
+  }
+}
